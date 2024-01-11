@@ -1,1 +1,4 @@
 shell = "nu"
+import = [
+    "~/.config/alacritty/catppuccin-frappe.toml"
+]
