@@ -22,5 +22,6 @@ map("n", "<C-UP>", "<C-w><UP>")                                         -- Move 
 map("n", "<C-DOWN>", "<C-w><DOWN>")                                     -- Move Down
 map("n", "<C-RIGHT>", "<C-w><RIGHT>")                                   -- Move Right
 map("n", "<C-LEFT>", "<C-w><LEFT>")                                     -- Move Left
-map("n", "<C-M-l>", "<cmd>lua vim.lsp.buf.formatting()<CR>")            -- Reformat Code
+map("n", "<C-M-l>", "<cmd>lua vim.lsp.buf.format()<CR>")                -- Reformat Code
+map("n", "<M-CR>", "<cmd>lua vim.lsp.buf.code_action()<CR>")                -- Reformat Code
 map("v", "<C-x>", ":'<,'>!PowerShell -NoLogo -NonInteractive<CR>")      -- Execute Selection

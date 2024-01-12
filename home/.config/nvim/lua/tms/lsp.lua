@@ -86,6 +86,10 @@ nvim_lsp.rust_analyzer.setup {
             procMacro = {
                 enable = true
             },
+            diagnostics = {
+                enable = true,
+                disabled = { "unresolved-proc-macro" },
+            },
         }
     }
 }

@@ -10,6 +10,7 @@ which_key.setup {
 which_key.register({
     ["<Leader>"] = { "<CMD>Telescope find_files<CR>", "Fuzzy File Search" },
     q = { ":q<CR>", "Exit" },
+    s = { ":wr<CR>", "Save" },
     e = {
         name = "Editor",
         cc = { ":ColorizerToggle<CR>", "Toggle Colourizer" },
