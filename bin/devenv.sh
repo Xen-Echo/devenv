@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-# ./devenv create base -p ~/Projects
+# ./devenv create base
+# ./devenv dotfiles base
 # ./devenv destroy base
 
 # Get directories
@@ -14,31 +15,38 @@ DOTFILES_DIR="$ROOT_DIR/dotfiles"
 
 # Parse arguments
 COMMAND=$1
-ENVRIONMENT=$2
+ENVIRONMENT=$2
+
+ENVIRONMENT_DIR="$SANDBOX_DIR/$ENVIRONMENT"
+ENVIRONMENT_EXISTS=false
+ENVIRONMENT_INIT="$CONTAINER_DIR/$ENVIRONMENT.sh"
+
+# Check command valid
+if [ "$COMMAND" != "create" ] && [ "$COMMAND" != "dotfiles" ] && [ "$COMMAND" != "destroy" ]
+then
+    echo "Invalid command expected, exiting..."
+    exit 1
+fi
 
 # Check if environment is specified
-if [ -z "$ENVRIONMENT" ]
+if [ -z "$ENVIRONMENT" ]
 then
     echo "No environment specified, exiting..."
     exit 1
+fi
+
+# Check if environment has been initialised
+if [ -f "$ENVIRONMENT_DIR/initialised" ]
+then
+    ENVIRONMENT_EXISTS=true
 fi
 
 # Attempt to create the environment
 if [ "$COMMAND" == "create" ]
 then
 
-    PROJECT_DIR=$3
-
-    if [ -z "$PROJECT_DIR" ]
-    then
-        echo "No project directory specified, exiting..."
-        exit 1
-    fi
-
-    ENVRIONMENT_DIR="$ROOT_DIR/$ENVRIONMENT"
-
     # Check if environment has already been initialised
-    if [ -f "$ENVRIONMENT_DIR/initialised" ]
+    if [ "$ENVIRONMENT_EXISTS" == true ]
     then
         echo "Environment already initialised, exiting..."
         exit 1
@@ -47,35 +55,51 @@ then
     echo "Initialising environment..."
 
     # Check if sanbox directory exists
-    if [ ! -d "$ENVRIONMENT_DIR" ]
+    if [ ! -d "$ENVIRONMENT_DIR" ]
     then
         echo "Sandbox directory not found, creating..."
-        mkdir "$ENVRIONMENT_DIR"
+        mkdir "$ENVIRONMENT_DIR"
     fi
 
     # Build the container image, the container file should be named the same as the environment
-    podman build -t base -f $CONTAINER_DIR/$ENVRIONMENT.Containerfile
+    podman build -t base -f $CONTAINER_DIR/$ENVIRONMENT.Containerfile
 
     # Create the Containerfile
-    distrobox create --nvidia --name $ENVRIONMENT --image $ENVRIONMENT --home $SANDBOX_DIR/$ENVRIONMENT
+    distrobox create --nvidia --name $ENVIRONMENT --image $ENVIRONMENT --home $SANDBOX_DIR/$ENVIRONMENT
 
     # Install dotfiles
-    distrobox enter $ENVRIONMENT -- $BIN_DIR/dotfiles.sh $ANSIBLE_DIR $DOTFILES_DIR
+    distrobox enter $ENVIRONMENT -- $BIN_DIR/dotfiles.sh $ANSIBLE_DIR $DOTFILES_DIR
 
-    # Symbolic link project directory
-    echo "Creating symbolic link for project directory..."
-    ln -s $PROJECT_DIR $HOME/Projects
+    # Run the extra init if it exists
+    if [ -f "$ENVIRONMENT_INIT" ]
+    then
+        chmod u+x $ENVIRONMENT_INIT
+        distrobox enter $ENVIRONMENT -- $ENVIRONMENT_INIT
+    fi
 
     # Write a file to the sandbox directory to indicate that the environment has been initialised
-    touch $ENVRIONMENT_DIR/initialised
+    touch $ENVIRONMENT_DIR/initialised
     echo "Initialisation complete."
+
+elif [ "$COMMAND" == "dotfiles" ]
+then
+
+    # Check if environment exists
+    if [ "$ENVIRONMENT_EXISTS" != true ]
+    then
+        echo "Environment does not exist, exiting..."
+        exit 1
+    fi
+
+    echo "Applying dotfiles..."
+    distrobox enter $ENVIRONMENT -- $BIN_DIR/dotfiles.sh $ANSIBLE_DIR $DOTFILES_DIR
 
 elif [ "$COMMAND" == "destroy" ]
 then
 
     echo "Destroying environment..."
-    distrobox stop $ENVRIONMENT -Y
-    distrobox stop $ENVRIONMENT -f --rm-home
+    distrobox rm -f $ENVIRONMENT
+    rm -rf $ENVIRONMENT_DIR
 
 else
 
