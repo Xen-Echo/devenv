@@ -23,3 +23,7 @@
       src: "{{DOTFILES_DIR}}/nvim/"
       dest: ~/.config/nvim/
 
+  - name: Configure Git
+    ansible.builtin.copy:
+      src: "{{DOTFILES_DIR}}/git/"
+      dest: ~/.config/git/

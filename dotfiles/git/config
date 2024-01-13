@@ -1,0 +1,7 @@
+[user]
+	name = Tom Simpson
+	email = mail@thomasmsimpson.co.uk
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
