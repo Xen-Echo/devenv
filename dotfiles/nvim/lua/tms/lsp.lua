@@ -54,83 +54,88 @@ cmp.setup.cmdline(':', {
     })
 })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
 -- ========================================================= --
 -- General LSP
 -- ========================================================= --
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local nvim_lsp = require('lspconfig')
+local mason_lspconfig = require("mason-lspconfig")
+
 require("mason").setup()
-require("mason-lspconfig").setup()
 
--- ========================================================= --
--- Rust LSP
--- ========================================================= --
+local on_attach = function(_, bufnr)
+end
 
-nvim_lsp.rust_analyzer.setup {
-    capabilities = capabilities,
-    settings = {
-        ["rust-analyzer"] = {
-            imports = {
-                granularity = {
-                    group = "module",
-                },
-                prefix = "self",
-            },
-            cargo = {
-                buildScripts = {
-                    enable = true,
-                },
-            },
-            procMacro = {
-                enable = true
-            },
-            diagnostics = {
-                enable = true,
-                disabled = { "unresolved-proc-macro" },
-            },
-        }
+local servers = {
+
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
+  },
+
+  rust_analyzer = {
+    ["rust-analyzer"] = {
+      imports = {
+          granularity = {
+              group = "module",
+          },
+          prefix = "self",
+      },
+      cargo = {
+          buildScripts = {
+              enable = true,
+          },
+      },
+      procMacro = {
+          enable = true
+      },
+      diagnostics = {
+          enable = true,
+          disabled = { "unresolved-proc-macro" },
+      },
     }
-}
+  },
 
--- ========================================================= --
--- JavaScript / TypeScript LSP
--- ========================================================= --
-
--- Config is handled with a tsconfig or jsconfig file in the directory
-
-nvim_lsp.tsserver.setup {
-    capabilities = capabilities,
+  tsserver = {
     root_dir = nvim_lsp.util.root_pattern("tsconfig.json")
-}
+  },
 
-nvim_lsp.eslint.setup {
-    capabilities = capabilities,
+  eslint = {
     root_dir = nvim_lsp.util.root_pattern("package.json")
-}
+  },
 
--- ========================================================= --
--- JSON LSP
--- ========================================================= --
-
-nvim_lsp.jsonls.setup {
-    capabilities = capabilities
-}
-
--- ========================================================= --
--- YAML LSP
--- ========================================================= --
-
-nvim_lsp.yamlls.setup {
-    capabilities = capabilities
-}
-
--- ========================================================= --
--- Deno LSP
--- ========================================================= --
-
-nvim_lsp.denols.setup {
-    capabilities = capabilities,
+  denols = {
     root_dir = nvim_lsp.util.root_pattern("deno.json")
+  },
+
+  jsonls = {},
+
+  yamlls = {}
+
 }
+
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers[server_name],
+      filetypes = (servers[server_name] or {}).filetypes,
+      root_dir = (servers[server_name] or {}).root_dir,
+    }
+  end,
+}
+
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
+}
+
+-- ========================================================= --
+-- Neovim Lua
+-- ========================================================= --
+
+require('neodev').setup()
+
