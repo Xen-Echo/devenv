@@ -13,7 +13,9 @@ if ("dotfiles" | path exists | into bool) != true {
 
 log info "NuShell Configuration"
 
-cp -urv dotfiles/nushell/* ~/AppData/Roaming/nushell
+mkdir ~/.config/nushell
+cp -urv dotfiles/nushell/*.nu ~/AppData/Roaming/nushell
+cp -urv dotfiles/nushell/scripts ~/.config/nushell/scripts
 
 log info "Nvim Configuration"
 

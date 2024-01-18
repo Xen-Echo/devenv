@@ -763,4 +763,6 @@ $env.config = {
 
 use ~/.cache/starship/init.nu
 
+source ~/.config/nushell/scripts/utils.nu
+
 alias ll = ls -la
