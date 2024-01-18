@@ -9,7 +9,7 @@ which_key.setup {
 
 -- TOOD: Continue new keymaps here
 which_key.register({
-    ["<Leader>"] = { "<CMD>Telescope find_files<CR>", "Fuzzy File Search" },
+    ["<Leader>"] = { "<CMD>Telescope git_files<CR>", "Fuzzy File Search" },
     q = { ":q<CR>", "Exit" },
     s = { ":wr<CR>", "Save" },
     e = {
@@ -46,7 +46,8 @@ which_key.register({
         f = { "<CMD>Telescope find_files<CR>", "Fuzzy File Search" },
         r = { "<CMD>Telescope oldfiles<CR>", "Open Recent File" },
         g = { "<CMD>Telescope live_grep<CR>", "Grep Search Files" },
-        t = { "<CMD>Telescope file_browser<CR>", "Show File Browser" }
+        t = { "<CMD>Telescope file_browser<CR>", "Show File Browser" },
+        b = { "<CMD>Telescope buffers<CR>", "Show Buffers" }
     },
     l = {
         name = "LSP",
