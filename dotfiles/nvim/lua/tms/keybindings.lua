@@ -24,3 +24,4 @@ map("n", "<C-RIGHT>", "<C-w><RIGHT>")                                   -- Move 
 map("n", "<C-LEFT>", "<C-w><LEFT>")                                     -- Move Left
 map("n", "<C-M-l>", "<cmd>lua vim.lsp.buf.format()<CR>")                -- Reformat Code
 map("n", "<M-CR>", "<cmd>lua vim.lsp.buf.code_action()<CR>")            -- Reformat Code
+map("t", "<ESC>", "<C-\\><C-n>")                                        -- Exit Terminal Mode

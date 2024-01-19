@@ -1,5 +1,5 @@
 -- ========================================================= --
--- Autocompletion 
+-- Autocompletion
 -- ========================================================= --
 
 vim.o.completeopt = "menu,menuone,noselect"
@@ -18,7 +18,7 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ['<C-UP>'] = cmp.mapping.scroll_docs(-4),
         ['<C-DOWN>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }), 
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Insert,
@@ -55,87 +55,94 @@ cmp.setup.cmdline(':', {
 })
 
 -- ========================================================= --
--- General LSP
--- ========================================================= --
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local nvim_lsp = require('lspconfig')
-local mason_lspconfig = require("mason-lspconfig")
-
-require("mason").setup()
-
-local on_attach = function(_, bufnr)
-end
-
-local servers = {
-
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
-
-  rust_analyzer = {
-    ["rust-analyzer"] = {
-      imports = {
-          granularity = {
-              group = "module",
-          },
-          prefix = "self",
-      },
-      cargo = {
-          buildScripts = {
-              enable = true,
-          },
-      },
-      procMacro = {
-          enable = true
-      },
-      diagnostics = {
-          enable = true,
-          disabled = { "unresolved-proc-macro" },
-      },
-    }
-  },
-
-  tsserver = {
-    root_dir = nvim_lsp.util.root_pattern("tsconfig.json")
-  },
-
-  eslint = {
-    root_dir = nvim_lsp.util.root_pattern("package.json")
-  },
-
-  denols = {
-    root_dir = nvim_lsp.util.root_pattern("deno.json")
-  },
-
-  jsonls = {},
-
-  yamlls = {}
-
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-      root_dir = (servers[server_name] or {}).root_dir,
-    }
-  end,
-}
-
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
--- ========================================================= --
 -- Neovim Lua
 -- ========================================================= --
 
 require('neodev').setup()
 
+-- ========================================================= --
+-- General LSP
+-- ========================================================= --
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local nvim_lsp = require('lspconfig')
+
+require("mason").setup()
+
+-- Config overrides for specific servers
+local lsp_configs = {
+
+    lua_ls = {
+        settings = {
+            Lua = {
+                globals = {
+                    "vim",
+                },
+                workspace = {
+                    library = vim.api.nvim_get_runtime_file("", true),
+                    checkThirdParty = false
+                },
+                telemetry = { enable = false },
+            },
+        }
+    },
+
+    rust_analyzer = {
+        settings = {
+            ["rust-analyzer"] = {
+                imports = {
+                    granularity = {
+                        group = "module",
+                    },
+                    prefix = "self",
+                },
+                cargo = {
+                    buildScripts = {
+                        enable = true,
+                    },
+                },
+                procMacro = {
+                    enable = true
+                },
+                diagnostics = {
+                    enable = true,
+                    disabled = { "unresolved-proc-macro" },
+                },
+            }
+        }
+    },
+
+    denols = {
+        root_dir = nvim_lsp.util.root_pattern("deno.json")
+    }
+
+}
+
+-- Define the servers to install
+local ensure_installed = {
+    "tsserver",
+    "eslint",
+    "jsonls",
+    "yamlls"
+}
+
+-- Add any servers that have config overrides, saves defining them twice
+for k in pairs(lsp_configs) do
+    ensure_installed[#ensure_installed + 1] = k
+end
+
+local mason_lspconfig = require("mason-lspconfig")
+
+mason_lspconfig.setup { ensure_installed = ensure_installed }
+
+for _, server in pairs(mason_lspconfig.get_installed_servers()) do
+    if server ~= "null-ls" then
+        local config = lsp_configs[server] or {}
+        nvim_lsp[server].setup {
+            capabilities = capabilities,
+            settings = config.settings,
+            filetypes = config.filetypes,
+            root_dir = config.root_dir,
+        }
+    end
+end

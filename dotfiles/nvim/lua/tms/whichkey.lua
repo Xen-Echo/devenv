@@ -10,7 +10,7 @@ which_key.setup {
 -- TOOD: Continue new keymaps here
 which_key.register({
     ["<Leader>"] = { "<CMD>Telescope git_files<CR>", "Fuzzy File Search" },
-    q = { ":q<CR>", "Exit" },
+    ["<ESC>"] = { ":q<CR>", "Exit" },
     s = { ":wr<CR>", "Save" },
     e = {
         name = "Editor",
