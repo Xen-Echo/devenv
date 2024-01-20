@@ -35,6 +35,7 @@ require("lazy").setup({
    "FraserLee/ScratchPad",
    "sindrets/diffview.nvim",
    "github/copilot.vim",
+   "windwp/nvim-ts-autotag",
    -- Highlighting
    "RRethy/vim-illuminate",
    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
