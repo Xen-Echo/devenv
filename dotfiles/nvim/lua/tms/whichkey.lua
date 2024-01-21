@@ -47,7 +47,8 @@ which_key.register({
         r = { "<CMD>Telescope oldfiles<CR>", "Open Recent File" },
         g = { "<CMD>Telescope live_grep<CR>", "Grep Search Files" },
         t = { "<CMD>Telescope file_browser<CR>", "Show File Browser" },
-        b = { "<CMD>Telescope buffers<CR>", "Show Buffers" }
+        b = { "<CMD>Telescope buffers<CR>", "Show Buffers" },
+        e = { "<CMD>Sexplore<CR>", "File Explorer" },
     },
     l = {
         name = "LSP",
