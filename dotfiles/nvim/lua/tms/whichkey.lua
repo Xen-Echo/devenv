@@ -27,9 +27,7 @@ which_key.register({
     t = {
         name = "Terminal",
         t = { ":FloatermToggle<CR>", "Toggle Terminal" },
-        n = { ":FloatermNew --name=node node<CR>", "Node Repl" },
-        d = { ":FloatermNew --name=deno deno<CR>", "Deno Repl" },
-        p = { ":FloatermNew --name=python python<CR>", "Python Repl" },
+        n = { ":FloatermNew<CR>", "New Terminal" },
         k = { ":FloatermKill<CR>", "Close Terminal" },
         ["["] = { ":FloatermPrev<CR>", "Previous Terminal" },
         ["]"] = { ":FloatermNext<CR>", "Next Terminal" }
