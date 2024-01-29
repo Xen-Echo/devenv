@@ -36,6 +36,7 @@ require("lazy").setup({
    "sindrets/diffview.nvim",
    "github/copilot.vim",
    "windwp/nvim-ts-autotag",
+   { 'kkoomen/vim-doge', build = ":call doge#install()" },
    -- Highlighting
    "RRethy/vim-illuminate",
    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },

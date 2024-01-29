@@ -11,6 +11,7 @@ which_key.setup {
 which_key.register({
     ["<Leader>"] = { "<CMD>Telescope git_files<CR>", "Fuzzy File Search" },
     ["<ESC>"] = { ":q<CR>", "Exit" },
+    -- d = vim-doge
     s = { ":wr<CR>", "Save" },
     e = {
         name = "Editor",
