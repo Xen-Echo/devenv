@@ -1,5 +1,6 @@
 require "tms.core"
 require "tms.keybindings"
+require "tms.copilot"
 require "tms.plugins"
 require "tms.whichkey"
 require "tms.telescope"
