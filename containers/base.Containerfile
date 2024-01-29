@@ -7,7 +7,7 @@ RUN echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen
 RUN pacman -Syu --noconfirm
 
 # Install core tools for environment
-RUN pacman -S --noconfirm git base-devel neovim zellij starship alacritty exa zoxide fd bat ripgrep fzf lazygit man-db unzip nushell ttf-jetbrains-mono-nerd zig 
+RUN pacman -S --noconfirm xclip git base-devel neovim zellij starship alacritty exa zoxide fd bat ripgrep fzf lazygit man-db unzip nushell ttf-jetbrains-mono-nerd zig 
 
 # Install language tools
 RUN pacman -S --noconfirm go rustup nodejs npm && npm install -g bun && rustup default stable
