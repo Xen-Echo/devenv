@@ -7,9 +7,27 @@ which_key.setup {
     }
 }
 
--- TOOD: Continue new keymaps here
+-- Simple function to check if the current directory is a git repo
+local function check_if_git_repo()
+    local git_dir = vim.fn.finddir(".git/.", ";")
+    if git_dir ~= "" then
+        return true
+    else
+        return false
+    end
+end
+
+-- Function to get the default file browser, fall back to find_files if not in a git repo
+local function get_default_file_browser()
+    if check_if_git_repo() then
+        return ":Telescope git_files<CR>"
+    else
+        return ":Telescope find_files<CR>"
+    end
+end
+
 which_key.register({
-    ["<Leader>"] = { "<CMD>Telescope git_files<CR>", "Fuzzy File Search" },
+    ["<Leader>"] = { "<CMD>" .. get_default_file_browser(), "Fuzzy File Search" },
     ["<ESC>"] = { ":q<CR>", "Exit" },
     -- d = vim-doge
     s = { ":wr<CR>", "Save" },
