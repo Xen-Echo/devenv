@@ -1,3 +1,5 @@
+[credential "helperselector"]
+	selected = manager
 [user]
 	name = Tom Simpson
 	email = mail@thomasmsimpson.co.uk

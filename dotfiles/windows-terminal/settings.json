@@ -25,7 +25,7 @@
             "keys": "alt+k"
         },
         {
-            "command": "paste",
+            "command": "unbound",
             "keys": "ctrl+v"
         },
         {
@@ -124,8 +124,8 @@
             "experimental.retroTerminalEffect": false,
             "font": 
             {
-                "face": "JetBrainsMono Nerd Font Mono",
-                "size": 10.5
+                "face": "JetBrainsMonoNL NF",
+                "size": 10
             },
             "opacity": 90,
             "scrollbarState": "hidden",
@@ -483,7 +483,7 @@
     ],
     "startOnUserLogin": false,
     "tabWidthMode": "titleLength",
-    "theme": "Catppuccin Frappe",
+    "theme": "system",
     "themes": 
     [
         {
