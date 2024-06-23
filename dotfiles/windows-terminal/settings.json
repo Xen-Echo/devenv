@@ -139,20 +139,22 @@
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
-                "name": "Windows PowerShell"
+                "name": "Windows PowerShell",
+                "startingDirectory": "%DEVROOT%"
             },
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
-                "name": "Command Prompt"
+                "name": "Command Prompt",
+                "startingDirectory": "%DEVROOT%"
             },
             {
                 "commandline": "nu",
                 "guid": "{87ec854c-b07a-4944-9b90-0a3cba71010b}",
                 "hidden": false,
                 "name": "Nu",
-                "startingDirectory": "%USERPROFILE%"
+                "startingDirectory": "%DEVROOT%"
             }
         ]
     },
@@ -507,5 +509,5 @@
         }
     ],
     "useAcrylicInTabRow": true,
-    "windowingBehavior": "useExisting"
+    "windowingBehavior": "useNew"
 }

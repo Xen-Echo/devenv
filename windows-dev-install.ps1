@@ -14,6 +14,8 @@ param(
 Write-Host "Configuring Windows development environment..."
 Write-Host "DevRoot: $DevRoot."
 
+[System.Environment]::SetEnvironmentVariable('DEVROOT', $DEVROOT, 'User')
+
 $TempDir = "$Env:TEMP\dev-setup"
 
 $ScoopRootDir = "$DevRoot\Scoop"
@@ -74,6 +76,7 @@ if (-not $SkipInstall.IsPresent) {
   scoop install neovim
   scoop install zoxide
   scoop install bat
+  scoop install lazygit
   scoop install jetbrains-toolbox
   winget install NanaZip --source msstore --accept-package-agreements
 
@@ -104,12 +107,10 @@ if (-not $SkipConfig.IsPresent) {
   # NuShell
 
   Write-Host "Configuring NuShell..."
-  $NuConfigDir = "$HOME\.config\nushell"
   $NuRoamingDir = "$HOME\AppData\Roaming\nushell"
-  New-Item -ItemType Directory -Force -Path $NuConfigDir | Out-Null
   New-Item -ItemType Directory -Force -Path $NuRoamingDir | Out-Null
   Copy-Item -Path "$Dotfiles\nushell\*.nu" -Destination $NuRoamingDir -Force
-  Copy-Item -Path "$Dotfiles\nushell\scripts" -Destination $NuConfigDir -Recurse -Force
+  Copy-Item -Path "$Dotfiles\nushell\scripts" -Destination $NuRoamingDir -Recurse -Force
   
   # Neovim
   
