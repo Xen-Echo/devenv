@@ -77,6 +77,7 @@ if (-not $SkipInstall.IsPresent) {
   scoop install zoxide
   scoop install bat
   scoop install lazygit
+  scoop install gsudo
   scoop install jetbrains-toolbox
   winget install NanaZip --source msstore --accept-package-agreements
 
