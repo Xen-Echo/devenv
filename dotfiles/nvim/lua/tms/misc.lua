@@ -88,7 +88,12 @@ vim.g["scratchpad_autostart"] = 0
 -- Floaterm
 -- ========================================================= --
 
-vim.g["floaterm_shell"] = "nu"
+local shell = os.getenv("DEVSHELL")
+if shell == nil or string.len(shell) == 0 then
+    shell = "nu"
+end
+
+vim.g["floaterm_shell"] = shell
 vim.g["floaterm_autoinsert"] = false
 
 -- ========================================================= --

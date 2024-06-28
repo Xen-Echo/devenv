@@ -15,6 +15,7 @@ Write-Host "Configuring Windows development environment..."
 Write-Host "DevRoot: $DevRoot."
 
 [System.Environment]::SetEnvironmentVariable('DEVROOT', $DEVROOT, 'User')
+[System.Environment]::SetEnvironmentVariable('DEVSHELL', 'pwsh', 'User')
 
 $TempDir = "$Env:TEMP\dev-setup"
 
@@ -70,6 +71,7 @@ if (-not $SkipInstall.IsPresent) {
   rustup default stable-x86_64-pc-windows-gnu
 
   # Tools
+  scoop install less
   scoop install fd
   scoop install fzf
   scoop install ripgrep
@@ -81,9 +83,9 @@ if (-not $SkipInstall.IsPresent) {
   scoop install gsudo
   scoop install jetbrains-toolbox
   winget install NanaZip --source msstore --accept-package-agreements
+  winget install --id Microsoft.Powershell --source winget --accept-package-agreements
 
   # Shell
-  scoop install nu
   scoop install starship
   scoop install nerd-fonts/JetBrainsMono-NF
 
@@ -101,23 +103,20 @@ if (-not $SkipConfig.IsPresent) {
 
   $Dotfiles = "$PSScriptRoot\dotfiles"
 
+  # PowerShell
+
+  Copy-Item -Path "$Dotfiles\powershell\Microsoft.PowerShell_profile.ps1" -Destination $Profile -Force
+
   # Git
  
   Write-Host "Configuring Git..."
   Copy-Item -Path "$Dotfiles\git\config" -Destination "$HOME\.gitconfig" -Force
-
-  # NuShell
-
-  Write-Host "Configuring NuShell..."
-  $NuRoamingDir = "$HOME\AppData\Roaming\nushell"
-  New-Item -ItemType Directory -Force -Path $NuRoamingDir | Out-Null
-  Copy-Item -Path "$Dotfiles\nushell\*.nu" -Destination $NuRoamingDir -Force
-  Copy-Item -Path "$Dotfiles\nushell\scripts" -Destination $NuRoamingDir -Recurse -Force
   
   # Neovim
   
   Write-Host "Configuring Neovim..."
   $NeovimConfigDir = "$HOME\AppData\Local\nvim"
+  Remove-Item -Path $NeovimConfigDir -Recurse -Force
   Copy-Item -Path "$Dotfiles\nvim" -Destination $NeovimConfigDir -Recurse -Force
   
   # Windows Terminal

@@ -72,6 +72,7 @@ require("lazy").setup({
     -- Dap Config & Plugins
     {
       "mfussenegger/nvim-dap", dependencies = {
+         "nvim-neotest/nvim-nio",
          "rcarriga/nvim-dap-ui",
          "jay-babu/mason-nvim-dap.nvim",
          "theHamsta/nvim-dap-virtual-text",

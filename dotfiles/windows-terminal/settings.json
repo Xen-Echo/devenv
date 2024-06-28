@@ -14,7 +14,7 @@
                 "split": "auto",
                 "splitMode": "duplicate"
             },
-            "keys": "alt+shift+d"
+            "keys": "alt+n"
         },
         {
             "command": 
@@ -103,7 +103,7 @@
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{87ec854c-b07a-4944-9b90-0a3cba71010b}",
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     "firstWindowPreference": "defaultProfile",
     "focusFollowMouse": false,
     "launchMode": "maximized",
@@ -143,17 +143,17 @@
                 "startingDirectory": "%DEVROOT%"
             },
             {
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
+                "name": "PowerShell",
+                "source": "Windows.Terminal.PowershellCore",
+                "startingDirectory": "%DEVROOT%"
+            },
+            {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt",
-                "startingDirectory": "%DEVROOT%"
-            },
-            {
-                "commandline": "nu",
-                "guid": "{87ec854c-b07a-4944-9b90-0a3cba71010b}",
-                "hidden": false,
-                "name": "Nu",
                 "startingDirectory": "%DEVROOT%"
             }
         ]
