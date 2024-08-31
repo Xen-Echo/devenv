@@ -47,11 +47,12 @@ if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
   irm get.scoop.sh -outfile "$TempDir\get-scoop.ps1"
   Invoke-Expression "&'$TempDir\get-scoop.ps1' -ScoopDir $ScoopInstallDir -ScoopGlobalDir $ScoopGlobalDir"
-  scoop bucket add extras
-  scoop bucket add nerd-fonts
 } else {
   Write-Host "Scoop is already installed."
 }
+
+scoop bucket add extras
+scoop bucket add nerd-fonts
 
 # ============================================================================== #
 # Install packages
@@ -105,6 +106,7 @@ if (-not $SkipConfig.IsPresent) {
 
   # PowerShell
 
+  mkdir "$HOME\Documents\PowerShell"
   Copy-Item -Path "$Dotfiles\powershell\Microsoft.PowerShell_profile.ps1" -Destination $Profile -Force
 
   # Git
