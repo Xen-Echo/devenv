@@ -5,6 +5,8 @@ param(
   [switch]$SkipInstall,
   [Parameter()]
   [switch]$SkipConfig
+  [Parameter()]
+  [string[]]$Components
 )
 
 # ============================================================================== #
@@ -62,16 +64,12 @@ if (-not $SkipInstall.IsPresent) {
 
   Write-Host "Installing packages..."  
 
-  # Core packages
+  # Core Development Packages
+
+  Write-Host "Core Packages:"
+
   scoop install git
   scoop install zig
-  scoop install nodejs
-  scoop install go
-  scoop install rustup-gnu
-  rustup toolchain install stable-x86_64-pc-windows-gnu
-  rustup default stable-x86_64-pc-windows-gnu
-
-  # Tools
   scoop install less
   scoop install fd
   scoop install fzf
@@ -82,13 +80,55 @@ if (-not $SkipInstall.IsPresent) {
   scoop install lazygit
   scoop install lazydocker
   scoop install gsudo
-  scoop install jetbrains-toolbox
   winget install NanaZip --source msstore --accept-package-agreements
   winget install --id Microsoft.Powershell --source winget --accept-package-agreements
 
-  # Shell
+  # Custom Shell
+
+  Write-Host "Shell:"
+
   scoop install starship
   scoop install nerd-fonts/JetBrainsMono-NF
+
+  # Optional Components
+
+  if $Components -eq $null {
+
+    Write-Host "No components specified."
+
+  } else {
+
+    Write-Host "Components:"
+
+    $InstallAll = $Components -contains "all"
+
+    if (-not $InstallAll) {
+      Write-Host "Components: $($Components -join ', ')"
+    }
+
+    if ($InstallAll -or $Components -contains "nodejs") {
+      scoop install nodejs
+    }
+
+    if ($InstallAll -or $Components -contains "python") {
+      scoop install python
+    }
+
+    if ($InstallAll -or $Components -contains "go") {
+      scoop install go
+    }
+
+    if ($InstallAll -or $Components -contains "rust") {
+      scoop install rustup-gnu
+      rustup toolchain install stable-x86_64-pc-windows-gnu
+      rustup default stable-x86_64-pc-windows-gnu
+    }
+
+    if ($InstallAll -or $Components -contains "toolbox") {
+        scoop install jetbrains-toolbox
+    }
+
+  }
 
 } else {
   Write-Host "Skipping package installation."
