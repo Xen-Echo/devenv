@@ -116,7 +116,18 @@ local lsp_configs = {
 
     denols = {
         root_dir = nvim_lsp.util.root_pattern("deno.json")
-    }
+    },
+
+    helm_ls = {
+        settings = {
+            ['helm-ls'] = {
+                yamlls = {
+                    enabled = false, -- Currently needs to be disabled or some templates throw a bunch of errors
+                    path = "yaml-language-server",
+                }
+            }
+        }
+    },
 
 }
 

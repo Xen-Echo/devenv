@@ -36,11 +36,13 @@ require("lazy").setup({
    "sindrets/diffview.nvim",
    "github/copilot.vim",
    "windwp/nvim-ts-autotag",
+   "nvim-neotest/nvim-nio",
    { 'kkoomen/vim-doge', build = ":call doge#install()" },
    -- Highlighting
    "RRethy/vim-illuminate",
    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
    "nvim-treesitter/nvim-treesitter-textobjects",
+   { "towolf/vim-helm", ft = "helm" },
    -- Autocomplete
    {
       "hrsh7th/nvim-cmp", dependencies = {
@@ -72,7 +74,6 @@ require("lazy").setup({
     -- Dap Config & Plugins
     {
       "mfussenegger/nvim-dap", dependencies = {
-         "nvim-neotest/nvim-nio",
          "rcarriga/nvim-dap-ui",
          "jay-babu/mason-nvim-dap.nvim",
          "theHamsta/nvim-dap-virtual-text",
