@@ -146,7 +146,9 @@ if (-not $SkipConfig.IsPresent) {
 
   # PowerShell
 
-  mkdir "$HOME\Documents\PowerShell"
+  if (-not (Test-Path "$HOME\Documents\PowerShell" -PathType Container)) {
+    New-Item -Path "$HOME\Documents\PowerShell" -ItemType Directory | Out-Null
+  }
   Copy-Item -Path "$Dotfiles\powershell\Microsoft.PowerShell_profile.ps1" -Destination $Profile -Force
 
   # Git
