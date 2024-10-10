@@ -4,7 +4,7 @@ param(
   [Parameter()]
   [switch]$SkipInstall,
   [Parameter()]
-  [switch]$SkipConfig
+  [switch]$SkipConfig,
   [Parameter()]
   [string[]]$Components
 )
@@ -92,7 +92,7 @@ if (-not $SkipInstall.IsPresent) {
 
   # Optional Components
 
-  if $Components -eq $null {
+  if ($Components -eq $null) {
 
     Write-Host "No components specified."
 
