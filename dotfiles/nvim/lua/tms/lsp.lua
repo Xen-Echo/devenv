@@ -133,7 +133,7 @@ local lsp_configs = {
 
 -- Define the servers to install
 local ensure_installed = {
-    "tsserver",
+    "ts_ls",
     "eslint",
     "jsonls",
     "yamlls"

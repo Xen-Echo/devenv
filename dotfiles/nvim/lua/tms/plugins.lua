@@ -38,6 +38,15 @@ require("lazy").setup({
    "windwp/nvim-ts-autotag",
    "nvim-neotest/nvim-nio",
    { 'kkoomen/vim-doge', build = ":call doge#install()" },
+   -- AI Tooling
+   {
+       "CopilotC-Nvim/CopilotChat.nvim",
+       branch = "canary",
+       dependencies = {
+           { "github/copilot.vim" },
+           { "nvim-lua/plenary.nvim" },
+       }
+   },
    -- Highlighting
    "RRethy/vim-illuminate",
    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
