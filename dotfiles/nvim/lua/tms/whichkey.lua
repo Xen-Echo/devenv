@@ -35,7 +35,6 @@ local function copilot_quick_chat()
 end
 
 which_key.add({
-    { "<Leader><ESC>",    ":q<CR>",                                                                desc = "Exit" },
     { "<Leader><Leader>", get_default_file_browser(),                                              desc = "File Search" },
     { "<Leader>c",        group = "Copilot" },
     { "<Leader>cc",       ":Copilot<CR>",                                                          desc = "Copilot" },
@@ -88,4 +87,5 @@ which_key.add({
     { "<Leader>wl",       ":tabn<CR>",                                                             desc = "Next Tab" },
     { "<Leader>wn",       ":tabnew<CR>",                                                           desc = "New Tab" },
     { "<Leader>ws",       ":ScratchPad<CR>",                                                       desc = "Scratch Pad" },
+    { "<Leader>wc",       ":q<CR>",                                                                desc = "Exit" },
 })

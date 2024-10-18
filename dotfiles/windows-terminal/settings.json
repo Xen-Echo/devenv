@@ -73,10 +73,6 @@
             "keys": "alt+p"
         },
         {
-            "command": "closePane",
-            "keys": "ctrl+d"
-        },
-        {
             "command": 
             {
                 "action": "moveFocus",
