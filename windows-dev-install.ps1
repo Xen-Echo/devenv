@@ -75,12 +75,10 @@ if (-not $SkipInstall.IsPresent) {
   scoop install fzf
   scoop install ripgrep
   scoop install neovim
-  scoop install zoxide
   scoop install bat
   scoop install lazygit
   scoop install lazydocker
   scoop install gsudo
-  winget install NanaZip --source msstore --accept-package-agreements
   winget install --id Microsoft.Powershell --source winget --accept-package-agreements
 
   # Custom Shell
@@ -104,6 +102,10 @@ if (-not $SkipInstall.IsPresent) {
 
     if (-not $InstallAll) {
       Write-Host "Components: $($Components -join ', ')"
+    }
+
+    if ($InstallAll -or $Components -contains "zip") {
+        winget install NanaZip --source msstore --accept-package-agreements
     }
 
     if ($InstallAll -or $Components -contains "nodejs") {
