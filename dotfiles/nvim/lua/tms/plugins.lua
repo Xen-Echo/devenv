@@ -25,23 +25,21 @@ require("lazy").setup({
    "folke/which-key.nvim",
    "folke/todo-comments.nvim",
    "folke/trouble.nvim",
-   "sudormrfbin/cheatsheet.nvim",
    "kyazdani42/nvim-web-devicons",
-   "voldikss/vim-floaterm",
+   --"voldikss/vim-floaterm",
+   {'akinsho/toggleterm.nvim', version = "*", config = true},
    "kylechui/nvim-surround",
    "norcalli/nvim-colorizer.lua",
    "ziontee113/color-picker.nvim",
    "lukas-reineke/indent-blankline.nvim",
-   "FraserLee/ScratchPad",
    "sindrets/diffview.nvim",
    "github/copilot.vim",
    "windwp/nvim-ts-autotag",
    "nvim-neotest/nvim-nio",
-   { 'kkoomen/vim-doge', build = ":call doge#install()" },
    -- AI Tooling
    {
        "CopilotC-Nvim/CopilotChat.nvim",
-       branch = "canary",
+       branch = "main",
        dependencies = {
            { "github/copilot.vim" },
            { "nvim-lua/plenary.nvim" },
@@ -51,7 +49,6 @@ require("lazy").setup({
    "RRethy/vim-illuminate",
    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
    "nvim-treesitter/nvim-treesitter-textobjects",
-   { "towolf/vim-helm", ft = "helm" },
    -- Autocomplete
    {
       "hrsh7th/nvim-cmp", dependencies = {
@@ -76,17 +73,7 @@ require("lazy").setup({
       "neovim/nvim-lspconfig", dependencies = {
          { "williamboman/mason.nvim", config = true },
          "williamboman/mason-lspconfig.nvim",
-         { "j-hui/fidget.nvim", opts = {} },
-         "folke/neodev.nvim",
-      },
-    },
-    -- Dap Config & Plugins
-    {
-      "mfussenegger/nvim-dap", dependencies = {
-         "rcarriga/nvim-dap-ui",
-         "jay-babu/mason-nvim-dap.nvim",
-         "theHamsta/nvim-dap-virtual-text",
-         -- Additional debuggers
+         { "j-hui/fidget.nvim", opts = {} }
       },
     },
 })

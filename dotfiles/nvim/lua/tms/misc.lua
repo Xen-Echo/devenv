@@ -36,7 +36,7 @@ require("ibl").setup { indent = { highlight = highlight } }
 -- Todo Comments
 -- ========================================================= --
 
--- TODO: Test 
+-- TODO: Test
 -- HACK: Test
 -- BUG: Test
 -- PERF: Test
@@ -85,13 +85,7 @@ require("trouble").setup()
 require('lualine').setup()
 
 -- ========================================================= --
--- ScratchPad Config
--- ========================================================= --
-
-vim.g["scratchpad_autostart"] = 0
-
--- ========================================================= --
--- Floaterm
+-- Terminal
 -- ========================================================= --
 
 local shell = os.getenv("DEVSHELL")
@@ -99,8 +93,10 @@ if shell == nil or string.len(shell) == 0 then
     shell = "nu"
 end
 
-vim.g["floaterm_shell"] = shell
-vim.g["floaterm_autoinsert"] = false
+require("toggleterm").setup({
+    size = 20,
+    shell = shell
+})
 
 -- ========================================================= --
 -- Surround Config
