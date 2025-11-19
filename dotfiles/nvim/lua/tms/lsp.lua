@@ -107,7 +107,7 @@ local lsp_configs = {
     },
 
     denols = {
-        root_dir = nvim_lsp.util.root_pattern("deno.json")
+        root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
     },
 
     helm_ls = {
@@ -120,6 +120,10 @@ local lsp_configs = {
             }
         }
     },
+
+    ts_ls = {
+        single_file_support = false,
+    }
 
 }
 
@@ -148,6 +152,7 @@ for _, server in pairs(mason_lspconfig.get_installed_servers()) do
             settings = config.settings,
             filetypes = config.filetypes,
             root_dir = config.root_dir,
+            single_file_support = config.single_file_support,
         }
     end
 end

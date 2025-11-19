@@ -99,8 +99,6 @@ if ($Configure.IsPresent) {
   $WindowsTerminalConfigDir = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
   Copy-Item -Path "$Dotfiles\windows-terminal\settings.json" -Destination $WindowsTerminalConfigDir -Force
 
-} else {
-  Write-Host "Skipping configuration."
 }
 
 # ============================================================================== #
