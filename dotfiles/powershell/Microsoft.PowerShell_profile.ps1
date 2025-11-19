@@ -1,19 +1,7 @@
 $PSStyle.FileInfo.Directory = ""
 
-Function ll() {
-    Get-ChildItem | Format-Table Mode, @{N='Owner';E={(Get-Acl $_.FullName).Owner}}, Length, LastWriteTime, @{N='Name';E={if($_.Target) {$_.Name+' -> '+$_.Target} else {$_.Name}}}
-}
-
 Function ws() {
     cd $env:DEVROOT
-}
-
-Function cht() {
-    param(
-        [string]$query = ":help"
-    )
-    $url = "https://cht.sh/$query"
-    curl -s $url | out-host -paging
 }
 
 Function fcd() {
