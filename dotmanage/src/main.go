@@ -7,14 +7,15 @@ import (
 
 type Platform string
 
-const PlatformString (
-	Win Platform = "Windows",
-	Mac Platform   = "macOS",
-	Linux Platform   = "Linux",
-}
+const (
+	Win   Platform = "Windows"
+	Mac   Platform = "macOS"
+	Linux Platform = "Linux"
+)
 
-type ConfigDatabase interfact {
-	
+type ConfigRegistry interface {
+	RegisterPath(key string, path string) error
+	ListPathsForKey(key string) ([]string, error)
 }
 
 func main() {
@@ -50,4 +51,3 @@ func platformCommand() {
 	}
 	println("Current platform:", platform)
 }
-
