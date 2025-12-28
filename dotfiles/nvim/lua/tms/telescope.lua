@@ -18,11 +18,6 @@ require('telescope').setup {
                 ["<C-DOWN>"] = telescope_actions.preview_scrolling_down,
             }
         }
-    },
-    extensions = {
-        file_browser = {
-          theme = "ivy"
-        },
     }
 }
 

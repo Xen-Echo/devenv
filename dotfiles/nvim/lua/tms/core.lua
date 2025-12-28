@@ -17,3 +17,4 @@ vim.cmd('set noshowmode')
 vim.cmd('set noshowcmd')
 vim.cmd('set nowrap')
 vim.cmd('set clipboard=unnamedplus')
+vim.o.completeopt = "menu,menuone,noselect"
