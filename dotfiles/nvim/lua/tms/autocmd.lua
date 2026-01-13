@@ -1,10 +1,3 @@
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*",
-    callback = function()
-        vim.lsp.buf.formatting_sync(nil, 1000)
-    end,
-})
-
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 
         'lua',
@@ -28,4 +21,3 @@ vim.api.nvim_create_autocmd('FileType', {
         opt.foldtext = ""
     end,
 })
-

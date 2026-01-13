@@ -10,3 +10,4 @@ require "tms.markdown"
 require "tms.misc"
 require "tms.theme"
 require "tms.autocmd"
+require("tms.togterm").setup()

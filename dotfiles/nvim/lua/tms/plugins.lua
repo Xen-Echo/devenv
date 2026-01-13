@@ -39,6 +39,14 @@ require("lazy").setup({
     "windwp/nvim-ts-autotag",
     "nvim-neotest/nvim-nio",
     "RRethy/vim-illuminate",
+    -- Tree
+    {
+        'nvim-mini/mini.nvim',
+        version = '*',
+        config = function()
+            require('mini.files').setup()
+        end
+    },
     -- AI Tooling
     {
         "CopilotC-Nvim/CopilotChat.nvim",
