@@ -12,5 +12,6 @@ ts.install({
     'typescript',
     'html',
     'css',
-    'json'
+    'json',
+    'markdown'
 }):wait(30000)

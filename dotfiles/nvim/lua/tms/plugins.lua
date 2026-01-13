@@ -54,7 +54,11 @@ require("lazy").setup({
         dependencies = { 'rafamadriz/friendly-snippets' },
         version = '1.*',
         opts = {
-            keymap = { preset = 'default' },
+            keymap = { 
+                preset = 'default',
+                ['<CR>'] = { 'select_and_accept', 'fallback' },
+                ['<C-y>'] = { },
+            },
             appearance = {
                 nerd_font_variant = 'mono'
             },
