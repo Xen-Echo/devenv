@@ -54,4 +54,3 @@ theme=Citruszest
 keybind = shift+enter=text:\x1b\r
 window-theme = "ghostty"
 window-show-tab-bar = "never"
-gtk-titlebar-style = "tabs"
