@@ -6,6 +6,7 @@ local ts = require('nvim-treesitter')
 ts.install({
     'lua',
     'go',
+    'templ',
     'rust',
     'python',
     'javascript',

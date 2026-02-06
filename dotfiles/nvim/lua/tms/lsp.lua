@@ -68,6 +68,12 @@ lsp_configs["gopls"] = {
     },
 }
 
+lsp_configs["templ"] = {
+    cmd = { "templ", "lsp" },
+    filetypes = { "templ" },
+    root_markers = { 'go.work', 'go.mod', '.git' },
+}
+
 require("mason").setup()
 
 -- Ensure we have the configured lsp servers installed

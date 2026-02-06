@@ -71,6 +71,7 @@ which_key.add({
     { "<Leader>lp",        "<CMD>lua vim.diagnostic.goto_prev()<CR>",                               desc = "Prev Diagnostic" },
     { "<Leader>lq",        "<CMD>lua vim.lsp.buf.signature_help()<CR>",                             desc = "Signature Help" },
     { "<Leader>lr",        "<CMD>lua vim.lsp.buf.rename()<CR>",                                     desc = "Rename" },
+    { "<Leader>lt",        "<CMD>lua vim.treesitter.start()<CR>",                                   desc = "Start Treesitter" },
     { "<Leader>ls",        group = "Symbols" },
     { "<Leader>lsd",       ":lua require('telescope.builtin').lsp_document_symbols{}<CR>",          desc = "[S]ymbols in [D]ocument" },
     { "<Leader>lsw",       ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols{}<CR>", desc = "[S]ymbols in [W]orkspace" },
