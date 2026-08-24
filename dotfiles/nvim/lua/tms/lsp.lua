@@ -26,34 +26,6 @@ lsp_configs["lua-language-server"] = {
     },
 }
 
-lsp_configs["rust-analyzer"] = {
-    cmd = { "rust-analyzer" },
-    filetypes = { "rust" },
-    root_markers = { "Cargo.toml" },
-    settings = {
-        ["rust-analyzer"] = {
-            imports = {
-                granularity = {
-                    group = "module",
-                },
-                prefix = "self",
-            },
-            cargo = {
-                buildScripts = {
-                    enable = true,
-                },
-            },
-            procMacro = {
-                enable = true
-            },
-            diagnostics = {
-                enable = true,
-                disabled = { "unresolved-proc-macro" },
-            },
-        }
-    }
-}
-
 lsp_configs["gopls"] = {
     cmd = { "gopls" },
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -66,12 +38,6 @@ lsp_configs["gopls"] = {
             staticcheck = true,
         },
     },
-}
-
-lsp_configs["templ"] = {
-    cmd = { "templ", "lsp" },
-    filetypes = { "templ" },
-    root_markers = { 'go.work', 'go.mod', '.git' },
 }
 
 require("mason").setup()
