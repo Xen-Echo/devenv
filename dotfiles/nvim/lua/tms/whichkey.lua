@@ -26,19 +26,8 @@ local function get_default_file_browser()
     end
 end
 
--- Function to ask copilot for a quick chat
-local function copilot_quick_chat()
-    local input = vim.fn.input("Copilot Query: ")
-    if input ~= "" then
-        require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-    end
-end
-
 which_key.add({
     { "<Leader><Leader>",  get_default_file_browser(),                                              desc = "File Search" },
-    { "<Leader>c",         group = "Copilot" },
-    { "<Leader>cc",        ":Copilot<CR>",                                                          desc = "Copilot" },
-    { "<Leader>cq",        copilot_quick_chat,                                                      desc = "Copilot Question" },
     { "<Leader>e",         group = "Editor" },
     { "<Leader>ecc",       ":ColorizerToggle<CR>",                                                  desc = "Toggle Colourizer" },
     { "<Leader>ecp",       ":PickColor<CR>",                                                        desc = "Colour Picker" },

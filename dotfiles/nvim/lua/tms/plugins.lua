@@ -35,7 +35,6 @@ require("lazy").setup({
     "ziontee113/color-picker.nvim",
     "lukas-reineke/indent-blankline.nvim",
     "sindrets/diffview.nvim",
-    "github/copilot.vim",
     "windwp/nvim-ts-autotag",
     "nvim-neotest/nvim-nio",
     "RRethy/vim-illuminate",
@@ -46,15 +45,6 @@ require("lazy").setup({
         config = function()
             require('mini.files').setup()
         end
-    },
-    -- AI Tooling
-    {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        branch = "main",
-        dependencies = {
-            { "github/copilot.vim" },
-            { "nvim-lua/plenary.nvim" },
-        }
     },
     -- Autocomplete
     {

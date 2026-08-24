@@ -10,14 +10,11 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-vim.g.copilot_no_tab_map = true
-
 map("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>")                     -- Clear Search
 map("n", "<C-c>", ":y*<CR>")                                       -- Copy to Clipboard
 map("v", "<C-c>", "\"*y")                                          -- Copy to Clipboard
 map("n", "<C-s>", ":w<CR>")                                        -- Write Normal
 map("i", "<C-s>", "<ESC>:w<CR>")                                   -- Write Insert
-map("i", "<C-y>", "copilot#Accept(\"\\<CR>\")", { expr = true })   -- Copilot Accept
 map("n", "<C-z>", ":u<CR>")                                        -- Undo Normal
 map("i", "<C-z>", "<ESC>:u<CR>")                                   -- Undo Insert
 map("n", "<C-a>", ":%y*<CR>")                                      -- Yank All
