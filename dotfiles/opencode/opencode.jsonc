@@ -1,0 +1,18 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "RTX 4090",
+      "options": {
+        "baseURL": "http://192.168.0.50:11434/v1"
+      },
+      "models": {
+        "gemma4:26b": {
+          "name": "Gemma 4 26b"
+        }
+      }
+    }
+  },
+  "model": "ollama/gemma4:26b"
+}

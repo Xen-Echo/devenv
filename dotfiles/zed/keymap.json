@@ -1,0 +1,75 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
+  },
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      // --- AI and Chat ---
+      "ctrl-a i": "agent::AddSelectionToThread",
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      // --- File Shortcuts ---
+      "space space": "file_finder::Toggle",
+      "space f b": "tab_switcher::Toggle",
+      "space f e": "pane::RevealInProjectPanel",
+      "space f g": "pane::DeploySearch",
+
+      // --- LSP & Code Intelligence ---
+      "space l a": "editor::FindAllReferences",
+      "space l c": "editor::ToggleCodeActions",
+      "space l f": "diagnostics::Deploy",
+      "space l g d": "editor::GoToDefinition",
+      "space l g i": "editor::GoToImplementation",
+      "space l g r": "editor::FindAllReferences",
+      "space l h": "editor::Hover",
+      "space l n": "editor::GoToDiagnostic",
+      "space l p": "editor::GoToPreviousDiagnostic",
+      "space l q": "editor::ShowSignatureHelp",
+      "space l r": "editor::Rename",
+      "space l s d": "outline::Toggle",
+
+      // --- Git Diff Shortcuts ---
+      "space e g c": "pane::CloseActiveItem",
+      "space e g d": "git::Diff",
+
+      // --- Quick Actions ---
+      "space s": "workspace::Save",
+
+      // --- Terminal Shortcuts ---
+      "space t t": "terminal_panel::ToggleFocus",
+
+      // --- Window & Tab Shortcuts ---
+      "space w n": "workspace::NewFile",
+      "space w c": "pane::CloseActiveItem",
+      "space w c a": "pane::CloseOtherItems",
+      "space w h": "workspace::ToggleLeftDock",
+      "space w l": "workspace::ToggleRightDock",
+      "space w j": "workspace::ToggleBottomDock",
+
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+    },
+  },
+]

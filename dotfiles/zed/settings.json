@@ -1,0 +1,124 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "unnecessary_code_fade": 0.5,
+  "ui_font_weight": 400.0,
+  "buffer_font_family": "IoskeleyMono Nerd Font Mono",
+  "cli_default_open_behavior": "existing_window",
+  "show_whitespaces": "boundary",
+  "show_edit_predictions": true,
+  "agent": {
+    "dock": "right",
+    "enable_feedback": false,
+    "sidebar_side": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+    "default_model": {
+      "provider": "ollama",
+      "model": "qwen2.5-coder:7b"
+    }
+  },
+  "edit_predictions": {
+    "mode": "subtle",
+    "ollama": {
+      "model": "qwen2.5-coder:3b",
+      "prompt_format": "infer",
+      "api_url": "http://localhost:11434",
+      "max_output_tokens": 124
+    },
+    "allow_data_collection": "no",
+    "provider": "ollama"
+  },
+  "proxy": "",
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "text_rendering_mode": "subpixel",
+  "project_panel": {
+    "hide_hidden": false,
+    "dock": "left",
+    "button": true,
+  },
+  "buffer_line_height": "standard",
+  "buffer_font_weight": 500.0,
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "mode": "auto"
+      },
+      "type": "registry"
+    },
+    "opencode": {
+      "default_config_options": {
+        "mode": "build",
+        "model": "ollama/gemma:26b"
+      },
+      "type": "registry"
+    },
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+    "anthropic_retention": false,
+  },
+  "vim_mode": true,
+  "base_keymap": "JetBrains",
+  "ui_font_size": 18.5,
+  "buffer_font_size": 15.0,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Transparent Prism",
+  },
+  "lsp": {
+      "deno": {
+        "settings": {
+          "deno": {
+            "enable": true,
+            "lint": true,
+            "unstable": true
+          }
+        }
+      }
+    },
+    "languages": {
+      "CSS": {
+         "show_edit_predictions": false
+      },
+      "TypeScript": {
+        "language_servers": [
+          "deno",
+          "!vtsls",
+          "!typescript-language-server",
+          "!eslint"
+        ],
+        "formatter": "language_server"
+      },
+      "TSX": {
+        "language_servers": [
+          "deno",
+          "!vtsls",
+          "!typescript-language-server",
+          "!eslint"
+        ],
+        "formatter": "language_server"
+      },
+      "JavaScript": {
+        "language_servers": [
+          "deno",
+          "!vtsls",
+          "!typescript-language-server",
+          "!eslint"
+        ],
+        "formatter": "language_server"
+      }
+    }
+}
