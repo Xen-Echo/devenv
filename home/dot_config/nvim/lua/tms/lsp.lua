@@ -26,6 +26,34 @@ lsp_configs["lua-language-server"] = {
     },
 }
 
+lsp_configs["rust-analyzer"] = {
+    cmd = { "rust-analyzer" },
+    filetypes = { "rust" },
+    root_markers = { "Cargo.toml" },
+    settings = {
+        ["rust-analyzer"] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+            diagnostics = {
+                enable = true,
+                disabled = { "unresolved-proc-macro" },
+            },
+        }
+    }
+}
+
 lsp_configs["gopls"] = {
     cmd = { "gopls" },
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -37,6 +65,22 @@ lsp_configs["gopls"] = {
             },
             staticcheck = true,
         },
+    },
+}
+
+lsp_configs["typescript-language-server"] = {
+    cmd = { "typescript-language-server", "--stdio" },
+    filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+    },
+    root_markers = { { "tsconfig.json", "jsconfig.json" }, "package.json", ".git" },
+    init_options = {
+        hostInfo = "neovim",
     },
 }
 

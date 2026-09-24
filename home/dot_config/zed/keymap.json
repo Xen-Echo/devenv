@@ -53,8 +53,6 @@
       "space e g d": "git::Diff",
 
       // --- Quick Actions ---
-      "space s": "workspace::Save",
-
       // --- Terminal Shortcuts ---
       "space t t": "terminal_panel::ToggleFocus",
 
