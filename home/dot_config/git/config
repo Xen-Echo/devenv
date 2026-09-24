@@ -2,7 +2,8 @@
 	selected = manager
 [user]
 	name = Tom Simpson
-	email = mail@thomasmsimpson.co.uk
+[include]
+	path = ~/.config/git/local
 [init]
 	defaultBranch = main
 [core]
