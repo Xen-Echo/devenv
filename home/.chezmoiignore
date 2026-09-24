@@ -1,0 +1,8 @@
+{{ if ne .chezmoi.os "windows" }}
+AppData/
+Documents/
+{{ end }}
+{{ if eq .chezmoi.os "windows" }}
+.config/ghostty/
+.config/nushell/
+{{ end }}
