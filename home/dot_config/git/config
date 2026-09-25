@@ -1,5 +1,5 @@
-[credential "helperselector"]
-	selected = manager
+[credential]
+	helper = store
 [user]
 	name = Tom Simpson
 [include]
