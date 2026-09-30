@@ -8,13 +8,13 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "outline_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "collaboration_panel": {
-    "button": false
+    "button": false,
   },
   "git_panel": {
-    "dock": "right"
+    "dock": "right",
   },
   "code_lens": "on",
   "preferred_line_length": 100,
@@ -157,6 +157,6 @@
     "JavaScript": {
       "language_servers": ["!deno", "typescript-language-server"],
       "formatter": "language_server",
-    },
+    }
   },
 }

@@ -70,4 +70,40 @@
       "ctrl-w l": "workspace::ActivatePaneRight",
     },
   },
+  {
+    "context": "!Editor && !Terminal",
+    "bindings": {
+      "space l s": "project_symbols::Toggle"
+    }
+  },
+  {
+    "context": "!Editor && !Terminal",
+    "unbind": {
+      "space shift-s": "project_symbols::Toggle"
+    }
+  },
+  {
+    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "bindings": {
+      "space l s": "project_symbols::Toggle"
+    }
+  },
+  {
+    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "unbind": {
+      "space shift-s": "project_symbols::Toggle"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space l s": "project_symbols::Toggle"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "unbind": {
+      "g shift-s": "project_symbols::Toggle"
+    }
+  }
 ]
